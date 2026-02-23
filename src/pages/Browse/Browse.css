@@ -127,12 +127,6 @@
     color: #0f172a;
 }
 
-[data-theme="light"] .filter-chip.active {
-    background: #0f172a;
-    color: #ffffff;
-    border-color: #0f172a;
-}
-
 /* ===== Content ===== */
 .browse-content {
     flex: 1;

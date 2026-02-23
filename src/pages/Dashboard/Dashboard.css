@@ -242,23 +242,6 @@
     transition: width 0.6s ease-out;
 }
 
-/* Light theme overrides */
-[data-theme="light"] .activity-item:hover {
-    background: #f1f5f9;
-}
-
-[data-theme="light"] .chart-card-bar-wrap {
-    background: #e2e8f0;
-}
-
-[data-theme="light"] .chart-card-bar {
-    background: #475569;
-}
-
-[data-theme="light"] .profile-avatar {
-    background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
-    color: #0f172a;
-}
 
 @media (max-width: 768px) {
     .chart-grid {

@@ -166,16 +166,12 @@
 
 /* Light theme header overrides */
 [data-theme="light"] .header {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom-color: #e2e8f0;
 }
 
 [data-theme="light"] .user-avatar {
     background: #e2e8f0;
-    color: #0f172a;
-}
-
-[data-theme="light"] .view-toggle .btn-icon.active {
-    background: #ffffff;
     color: #0f172a;
 }
 

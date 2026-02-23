@@ -98,52 +98,142 @@
 }
 
 /* ===== Light Theme Overrides ===== */
+/*
+  Strategy: The page background is white, individual cards stay dark.
+  
+  - Override the global surface variables so the page is light.
+  - Override large block SECTION backgrounds (which use --surface-primary)
+    to be white/light in light mode.
+  - Explicitly keep individual card backgrounds dark via direct overrides.
+  - Cards already have light text via var(--text-primary) from :root (dark theme
+    default), so we just need to ensure their local scope keeps dark-theme vars.
+*/
 [data-theme="light"] {
-  /* Surfaces */
-  --surface-primary: #ffffff;
+  /* Page/body background */
   --surface-secondary: #f8fafc;
+  /* Light elevated surfaces (e.g. input backgrounds, hover states on white) */
   --surface-elevated: #f1f5f9;
+  /* Overlay */
   --surface-overlay: rgba(0, 0, 0, 0.4);
 
-  /* Borders */
+  /* NOTE: --surface-primary stays #0f172a intentionally — cards use it */
+
+  /* Borders on white background */
   --border-color: #e2e8f0;
   --border-color-strong: #cbd5e1;
 
-  /* Text */
+  /* Text on white background */
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --text-tertiary: #64748b;
   --text-inverse: #f8fafc;
 
-  /* Accent */
-  --color-accent: #0f172a;
-  --color-accent-hover: #1e293b;
-
-  /* Shadows — slightly stronger for visibility on white */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  /* Stronger shadows for visibility on white */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.12), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.14), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
 
-/* Light theme component-level overrides */
-[data-theme="light"] .skeleton {
-  background: linear-gradient(90deg,
-      #e2e8f0 25%,
-      #f1f5f9 50%,
-      #e2e8f0 75%);
-  background-size: 200% 100%;
+/* ── Large page section backgrounds: flip to white ── */
+/* These sections use var(--surface-primary) which stays dark,
+   so we explicitly override them to white in light theme. */
+[data-theme="light"] .how-it-works,
+[data-theme="light"] .exam-types-section,
+[data-theme="light"] .cta-section,
+[data-theme="light"] .departments-section {
+  background: #ffffff;
 }
 
-[data-theme="light"] .table tr:hover td {
-  background: #f1f5f9;
+[data-theme="light"] .recent-section {
+  background: #f8fafc;
 }
 
-[data-theme="light"] .toast {
-  background: #0f172a;
+/* ── Individual dark cards: keep dark background ── */
+/* Restore dark CSS vars inside cards so text/borders render correctly
+   on the dark card background. */
+/* Individual dark cards: restore dark-theme CSS vars AND set explicit color
+   so that child elements inheriting `color` from DOM cascade get light text. */
+[data-theme="light"] .card,
+[data-theme="light"] .chart-card,
+[data-theme="light"] .cta-card,
+[data-theme="light"] .stat-card {
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --border-color: #1e293b;
+  --border-color-strong: #334155;
+  --surface-elevated: #1e293b;
+  /* Explicitly set color so all children that inherit it get light text */
   color: #f8fafc;
 }
 
+/* Secondary/tertiary text descendants inside dark cards */
+[data-theme="light"] .card *,
+[data-theme="light"] .chart-card *,
+[data-theme="light"] .cta-card *,
+[data-theme="light"] .stat-card * {
+  border-color: inherit;
+}
+
+/* ── Dark page-level panels that should stay dark ── */
+[data-theme="light"] .upload-form,
+[data-theme="light"] .browse-filters,
+[data-theme="light"] .table-container,
+[data-theme="light"] .modal,
+[data-theme="light"] .login-container,
+[data-theme="light"] .profile-card,
+[data-theme="light"] .header-nav.mobile-open {
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --border-color: #1e293b;
+  --border-color-strong: #334155;
+  --surface-elevated: #1e293b;
+  color: #f8fafc;
+}
+
+/* ── Section tags on white-bg sections ── */
+[data-theme="light"] .how-it-works .section-tag,
+[data-theme="light"] .departments-section .section-tag,
+[data-theme="light"] .exam-types-section .section-tag,
+[data-theme="light"] .recent-section .section-tag {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+/* ── Section heading text on now-white sections ── */
+[data-theme="light"] .how-it-works .section-title,
+[data-theme="light"] .departments-section .section-title,
+[data-theme="light"] .exam-types-section .section-title,
+[data-theme="light"] .recent-section .section-title,
+[data-theme="light"] .how-it-works .section-subtitle,
+[data-theme="light"] .departments-section .section-subtitle,
+[data-theme="light"] .exam-types-section .section-subtitle,
+[data-theme="light"] .recent-section .section-subtitle {
+  color: #0f172a;
+}
+
+/* Step cards: dark background with light text in light theme */
+[data-theme="light"] .step-card {
+  background: #0f172a;
+  border-color: #1e293b;
+  color: #f8fafc;
+}
+
+[data-theme="light"] .step-card .step-number {
+  color: #e2e8f0;
+}
+
+[data-theme="light"] .step-card p {
+  color: #cbd5e1;
+}
+
+/* Exam type cards: also have .card class → inherit light text from .card override.
+   No color override needed here — let the .card rule handle it. */
+
+
+/* Scrollbar */
 [data-theme="light"] ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
 }
@@ -152,20 +242,25 @@
   background: #94a3b8;
 }
 
+/* Toast stays dark */
+[data-theme="light"] .toast {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+/* Skeleton on white bg */
+[data-theme="light"] .skeleton {
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+}
+
+/* Upload zone hover */
 [data-theme="light"] .upload-zone:hover,
 [data-theme="light"] .upload-zone.drag-over {
-  background: #e2e8f0;
+  background: #334155;
 }
 
-[data-theme="light"] .btn-primary {
-  background: #0f172a;
-  color: #ffffff;
-}
-
-[data-theme="light"] .btn-primary:hover {
-  background: #1e293b;
-}
-
+/* Badges */
 [data-theme="light"] .badge-dark {
   background: #0f172a;
   color: #ffffff;

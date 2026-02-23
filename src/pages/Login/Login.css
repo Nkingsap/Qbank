@@ -128,16 +128,6 @@
     font-family: 'SF Mono', Menlo, monospace;
 }
 
-/* Light theme overrides */
-[data-theme="light"] .credential-item code {
-    background: #e2e8f0;
-    color: #0f172a;
-}
-
-[data-theme="light"] .login-spinner {
-    border-color: rgba(255, 255, 255, 0.15);
-    border-top-color: #ffffff;
-}
 
 @media (max-width: 480px) {
     .login-page {
