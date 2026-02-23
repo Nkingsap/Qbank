@@ -108,10 +108,15 @@ export default function PaperManager() {
     const handleUpload = async (e) => {
         e.preventDefault();
 
-        // For dept admins, always use user.departmentId (the dropdown is hidden for them)
-        const departmentId = isDeptAdmin ? user.departmentId : form.departmentId;
+        // For dept admins, use user.departmentId if set, otherwise fall back to form selection
+        const departmentId = isDeptAdmin && user.departmentId ? user.departmentId : form.departmentId;
 
-        if (!form.subject || !form.semester || !form.examType || !form.year || !departmentId) {
+        if (!departmentId) {
+            toast.error('No department assigned. Please contact a Super Admin to assign your department.');
+            return;
+        }
+
+        if (!form.subject || !form.semester || !form.examType || !form.year) {
             toast.error('Please fill in all required fields');
             return;
         }
@@ -251,7 +256,7 @@ export default function PaperManager() {
                         </div>
 
                         <div className="form-row-3">
-                            {isSuperAdmin && (
+                            {(isSuperAdmin || (isDeptAdmin && !user.departmentId)) && (
                                 <div className="form-group">
                                     <label className="form-label">Department *</label>
                                     <select

@@ -120,9 +120,18 @@ export async function getDeptAdmins() {
 
 export async function createUser(userData) {
     try {
+        // Map frontend camelCase to backend snake_case
+        const payload = {
+            name: userData.name,
+            username: userData.username,
+            email: userData.email,
+            password: userData.password,
+            role: userData.role,
+            department_id: userData.departmentId,
+        };
         const data = await api('/api/users', {
             method: 'POST',
-            body: JSON.stringify(userData),
+            body: JSON.stringify(payload),
         });
         return { success: true, user: data };
     } catch (err) {
@@ -132,9 +141,18 @@ export async function createUser(userData) {
 
 export async function updateUser(id, updates) {
     try {
+        // Map frontend camelCase to backend snake_case
+        const payload = {};
+        if (updates.name !== undefined) payload.name = updates.name;
+        if (updates.username !== undefined) payload.username = updates.username;
+        if (updates.email !== undefined) payload.email = updates.email;
+        if (updates.password) payload.password = updates.password;
+        if (updates.departmentId !== undefined) payload.department_id = updates.departmentId;
+        if (updates.role !== undefined) payload.role = updates.role;
+
         const data = await api(`/api/users/${id}`, {
             method: 'PUT',
-            body: JSON.stringify(updates),
+            body: JSON.stringify(payload),
         });
         return { success: true, user: data };
     } catch (err) {
