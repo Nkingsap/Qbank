@@ -1,0 +1,66 @@
+.departments-page {
+    padding: var(--spacing-xxl) 0;
+    min-height: calc(100vh - 80px - 300px);
+    /* Account for header and footer */
+}
+
+.departments-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: var(--spacing-xl);
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.departments-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: -0.02em;
+}
+
+.departments-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 600px;
+}
+
+.departments-search {
+    width: 300px;
+    max-width: 100%;
+}
+
+.departments-search .search-input {
+    background-color: var(--surface-primary);
+    border-color: var(--border-color);
+}
+
+.departments-search .search-input:focus {
+    background-color: var(--surface-secondary);
+    border-color: var(--border-color-strong);
+}
+
+.departments-page-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+/* Reusing existing department-card styles from Home.css */
+/* Ensure the page is responsive */
+@media (max-width: 768px) {
+    .departments-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .departments-search {
+        width: 100%;
+    }
+
+    .departments-page-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+}

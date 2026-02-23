@@ -1,0 +1,396 @@
+.dashboard {
+    padding: var(--spacing-2xl) 0 var(--spacing-3xl);
+    min-height: calc(100vh - var(--header-height));
+}
+
+.dashboard-header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.dashboard-header h1 {
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.dashboard-header p {
+    font-size: var(--font-size-sm);
+    color: var(--text-tertiary);
+    margin-top: 2px;
+}
+
+.dashboard-content {
+    margin-top: var(--spacing-xl);
+}
+
+/* ===== Overview Stats ===== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.stat-card .stat-icon {
+    font-size: 24px;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ===== Section Header ===== */
+.dash-section {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.dash-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-lg);
+}
+
+.dash-section-header h2 {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+}
+
+/* ===== Paper Upload Form ===== */
+.upload-form {
+    background: var(--surface-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.upload-form h3 {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+.form-row-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border-color);
+}
+
+/* ===== Recent Uploads Grid ===== */
+.recent-uploads-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+}
+
+/* ===== Papers Table ===== */
+.papers-table-actions {
+    display: flex;
+    gap: 6px;
+}
+
+/* ===== Activity Log ===== */
+.activity-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+    transition: background var(--transition-fast);
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-item:hover {
+    background: var(--color-gray-800);
+}
+
+.activity-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-gray-300);
+    flex-shrink: 0;
+    margin-top: 6px;
+}
+
+.activity-dot.login {
+    background: #22c55e;
+}
+
+.activity-dot.logout {
+    background: #a3a3a3;
+}
+
+.activity-dot.upload_paper {
+    background: #3b82f6;
+}
+
+.activity-dot.delete_paper {
+    background: #ef4444;
+}
+
+.activity-dot.create_dept {
+    background: #8b5cf6;
+}
+
+.activity-dot.delete_dept {
+    background: #ef4444;
+}
+
+.activity-dot.create_user {
+    background: #f59e0b;
+}
+
+.activity-dot.delete_user {
+    background: #ef4444;
+}
+
+.activity-info {
+    flex: 1;
+}
+
+.activity-message {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+.activity-time {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    margin-top: 2px;
+}
+
+/* ===== Chart Grid Cards ===== */
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.chart-card {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.chart-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.chart-card-title {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-card-subtitle {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+}
+
+.chart-card-val {
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--text-primary);
+}
+
+.chart-card-bar-wrap {
+    height: 6px;
+    background: var(--color-gray-800);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-top: auto;
+}
+
+.chart-card-bar {
+    height: 100%;
+    background: var(--color-gray-300);
+    border-radius: var(--radius-full);
+    transition: width 0.6s ease-out;
+}
+
+@media (max-width: 768px) {
+    .chart-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===== Manager Filters ===== */
+.manager-filters {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.manager-filters .form-select {
+    min-width: 140px;
+}
+
+/* ===== Paper Manager Layout ===== */
+.paper-manager-top {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.paper-manager-header {
+    margin-bottom: 0;
+}
+
+.paper-manager-filters,
+.paper-manager-form {
+    grid-column: 1 / -1;
+}
+
+/* Hide mobile-only upload button on desktop */
+.paper-upload-btn-mobile {
+    display: none;
+}
+
+/* ===== Tab Specific ===== */
+.tab-icon {
+    margin-right: 6px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .recent-uploads-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-row-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard {
+        padding: var(--spacing-lg) 0 var(--spacing-2xl);
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .recent-uploads-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dash-section-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-sm);
+    }
+
+    .dash-section-header button {
+        width: 100%;
+    }
+
+    .manager-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .manager-filters .form-select {
+        width: 100% !important;
+    }
+
+    .manager-filters .search-wrapper {
+        max-width: none !important;
+        flex: unset !important;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .form-actions button {
+        width: 100%;
+    }
+
+    /* Mobile: hide desktop button, show mobile one inside filters */
+    .paper-upload-btn-desktop {
+        display: none;
+    }
+
+    .paper-upload-btn-mobile {
+        display: block;
+        width: 100%;
+    }
+
+    .paper-manager-top {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .paper-manager-header {
+        order: 1;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .paper-manager-filters {
+        order: 2;
+        margin-bottom: 0;
+    }
+
+    .paper-manager-form {
+        order: 3;
+        margin-top: var(--spacing-md);
+    }
+
+    /* Add spacing between upload section and papers table */
+    .paper-manager-top {
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .papers-grid.show-on-mobile {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+}

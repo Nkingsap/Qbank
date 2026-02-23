@@ -1,0 +1,320 @@
+.browse-page {
+    padding: var(--spacing-2xl) 0 var(--spacing-3xl);
+    min-height: calc(100vh - var(--header-height));
+}
+
+.browse-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-xl);
+    gap: var(--spacing-md);
+}
+
+.browse-header h1 {
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.browse-header p {
+    font-size: var(--font-size-sm);
+    color: var(--text-tertiary);
+    margin-top: 2px;
+}
+
+.browse-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.view-toggle {
+    display: flex;
+    background: var(--color-gray-800);
+    border-radius: var(--radius-md);
+    padding: 2px;
+}
+
+.view-toggle .btn-icon.active {
+    background: var(--color-gray-700);
+    box-shadow: var(--shadow-sm);
+    color: var(--color-white);
+}
+
+/* ===== Layout ===== */
+.browse-layout {
+    display: flex;
+    gap: var(--spacing-xl);
+}
+
+/* ===== Filters ===== */
+.browse-filters {
+    width: 280px;
+    flex-shrink: 0;
+    position: sticky;
+    top: calc(var(--header-height) + var(--spacing-xl));
+    max-height: calc(100vh - var(--header-height) - var(--spacing-2xl));
+    overflow-y: auto;
+    background: var(--surface-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+.filters-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-lg);
+}
+
+.filters-header h3 {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+}
+
+.filter-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.filter-label {
+    display: block;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.filter-chip {
+    padding: 5px 12px;
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.filter-chip:hover {
+    border-color: var(--color-gray-400);
+    color: var(--text-primary);
+}
+
+.filter-chip.active {
+    background: var(--color-white);
+    color: var(--color-black);
+    border-color: var(--color-white);
+}
+
+/* ===== Content ===== */
+.browse-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.sort-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: var(--spacing-lg);
+}
+
+.sort-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-tertiary);
+    font-weight: 500;
+}
+
+.sort-select {
+    width: auto;
+    padding: 6px 32px 6px 12px;
+    font-size: var(--font-size-xs);
+}
+
+/* ===== Papers Grid ===== */
+.papers-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+}
+
+/* ===== Papers List ===== */
+.papers-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.paper-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-lg);
+    gap: var(--spacing-lg);
+}
+
+.paper-list-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.paper-list-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.paper-list-badges {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.paper-list-info h3 {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.paper-list-meta {
+    display: flex;
+    gap: 12px;
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+}
+
+.paper-list-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+    .papers-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .browse-page {
+        padding: var(--spacing-lg) 0 var(--spacing-2xl);
+    }
+
+    .browse-header {
+        flex-direction: column;
+    }
+
+    .browse-layout {
+        flex-direction: column;
+    }
+
+    .browse-filters {
+        width: 100%;
+        position: static;
+        max-height: none;
+    }
+
+    .paper-list-item {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px var(--spacing-md);
+        gap: 4px;
+    }
+
+    .paper-list-top-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 2px;
+    }
+
+    .paper-list-top-row .favorite-btn {
+        font-size: 16px;
+        width: 26px;
+        height: 26px;
+        flex-shrink: 0;
+    }
+
+    .paper-list-badges {
+        margin-bottom: 0;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .paper-list-info {
+        padding-bottom: 0;
+    }
+
+    .paper-list-info h3 {
+        font-size: var(--font-size-sm);
+        margin-bottom: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .paper-list-meta {
+        font-size: 11px;
+        gap: 6px;
+    }
+
+    /* Keep exam type & year, but hide less vital metadata for shortness */
+    .paper-list-meta span:nth-child(n+3) {
+        display: none;
+        /* Hide views and downloads */
+    }
+
+    .paper-list-actions {
+        width: 100%;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        padding-top: 6px;
+        margin-top: 4px;
+        border-top: 1px solid var(--border-color);
+        gap: 8px;
+    }
+
+    .paper-list-actions .favorite-btn {
+        margin-right: auto;
+        /* Push star all the way to the left to balance the space */
+    }
+
+    .paper-list-actions .btn {
+        width: auto;
+        padding: 5px 12px;
+        font-size: 11px;
+    }
+
+    /* Hide grid/list toggle on mobile — lock to list */
+    .view-toggle {
+        display: none;
+    }
+
+    /* Tighten list gap */
+    .papers-list {
+        gap: 8px;
+    }
+
+    .browse-header h1 {
+        font-size: var(--font-size-xl);
+    }
+
+    .browse-header p {
+        font-size: var(--font-size-xs);
+    }
+}
