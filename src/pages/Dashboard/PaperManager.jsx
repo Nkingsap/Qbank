@@ -108,7 +108,10 @@ export default function PaperManager() {
     const handleUpload = async (e) => {
         e.preventDefault();
 
-        if (!form.subject || !form.semester || !form.examType || !form.year || !form.departmentId) {
+        // For dept admins, always use user.departmentId (the dropdown is hidden for them)
+        const departmentId = isDeptAdmin ? user.departmentId : form.departmentId;
+
+        if (!form.subject || !form.semester || !form.examType || !form.year || !departmentId) {
             toast.error('Please fill in all required fields');
             return;
         }
@@ -133,7 +136,7 @@ export default function PaperManager() {
                 semester: Number(form.semester),
                 examType: form.examType,
                 year: form.year,
-                departmentId: form.departmentId,
+                departmentId: departmentId,
                 description: form.description,
                 fileName: form.fileName,
                 fileUrl: fileUrl,
