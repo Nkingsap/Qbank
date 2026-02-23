@@ -93,19 +93,7 @@ export default function Login() {
                     </button>
                 </form>
 
-                <div className="login-footer">
-                    <p>Default Super Admin Credentials</p>
-                    <div className="login-credentials">
-                        <div className="credential-item">
-                            <span className="credential-label">Username:</span>
-                            <code>superadmin</code>
-                        </div>
-                        <div className="credential-item">
-                            <span className="credential-label">Password:</span>
-                            <code>admin123</code>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     );

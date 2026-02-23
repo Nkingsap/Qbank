@@ -10,12 +10,14 @@ import {
     YEARS,
 } from '../../utils/storage';
 import PaperCard from '../../components/PaperCard';
+import LoadingSpinner from '../../components/LoadingSpinner';
 import './Browse.css';
 
 export default function Browse() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [departments, setDepartments] = useState([]);
     const [papers, setPapers] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const [sortBy, setSortBy] = useState('newest');
     const [showFilters, setShowFilters] = useState(true);
@@ -39,6 +41,7 @@ export default function Browse() {
 
     useEffect(() => {
         async function loadPapers() {
+            setLoading(true);
             const result = await getPapersByFilters(filters);
 
             // Apply sort (sorting is also done server-side, but we re-sort locally for consistency)
@@ -53,6 +56,7 @@ export default function Browse() {
             }
 
             setPapers(result);
+            setLoading(false);
         }
         loadPapers();
     }, [filters, sortBy]);
@@ -253,7 +257,9 @@ export default function Browse() {
                             </select>
                         </div>
 
-                        {papers.length === 0 ? (
+                        {loading ? (
+                            <LoadingSpinner message="Loading papers..." />
+                        ) : papers.length === 0 ? (
                             <div className="empty-state">
                                 <div className="empty-state-icon">📚</div>
                                 <h3>No papers found</h3>

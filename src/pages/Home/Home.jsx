@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getDepartments, getPapers, SEMESTERS, EXAM_TYPES, incrementPaperViews, incrementPaperDownloads } from '../../utils/storage';
+import LoadingSpinner from '../../components/LoadingSpinner';
 import './Home.css';
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
     const [recentPapers, setRecentPapers] = useState([]);
     const [showAllRecentPapers, setShowAllRecentPapers] = useState(false);
     const [downloadingId, setDownloadingId] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function loadData() {
@@ -21,6 +23,7 @@ export default function Home() {
                 departments: depts.length,
                 downloads: papers.reduce((sum, p) => sum + (p.downloads || 0), 0),
             });
+            setLoading(false);
         }
         loadData();
     }, []);
@@ -60,6 +63,14 @@ export default function Home() {
             }
         }
     };
+
+    if (loading) {
+        return (
+            <div className="home" style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <LoadingSpinner message="Loading..." />
+            </div>
+        );
+    }
 
     return (
         <div className="home">

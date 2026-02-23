@@ -3,6 +3,29 @@
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8787';
 
+// ===== In-Memory Cache =====
+const cache = new Map();
+const CACHE_TTL = 60_000; // 60 seconds
+
+function getCacheKey(path, options) {
+    return `${options.method || 'GET'}:${path}`;
+}
+
+function getCached(key) {
+    const entry = cache.get(key);
+    if (!entry) return null;
+    return entry;
+}
+
+function setCache(key, data) {
+    cache.set(key, { data, timestamp: Date.now() });
+}
+
+/** Clear all cached GET responses (called after mutations) */
+export function clearApiCache() {
+    cache.clear();
+}
+
 function getAuthToken() {
     const session = localStorage.getItem('qbank_session');
     if (session) {
@@ -35,9 +58,21 @@ function normalizeKeys(obj) {
 }
 
 /**
- * Make an authenticated API request
+ * Make an authenticated API request (GET requests are cached)
  */
 export async function api(path, options = {}) {
+    const method = (options.method || 'GET').toUpperCase();
+    const isGet = method === 'GET';
+    const cacheKey = getCacheKey(path, options);
+
+    // For GET requests, return cached data if fresh
+    if (isGet) {
+        const cached = getCached(cacheKey);
+        if (cached && (Date.now() - cached.timestamp) < CACHE_TTL) {
+            return cached.data;
+        }
+    }
+
     const token = getAuthToken();
     const headers = {
         ...options.headers,
@@ -63,7 +98,16 @@ export async function api(path, options = {}) {
         throw new Error(data.error || 'API request failed');
     }
 
-    return normalizeKeys(data);
+    const normalized = normalizeKeys(data);
+
+    // Cache GET responses; clear cache for mutations
+    if (isGet) {
+        setCache(cacheKey, normalized);
+    } else {
+        clearApiCache();
+    }
+
+    return normalized;
 }
 
 /**

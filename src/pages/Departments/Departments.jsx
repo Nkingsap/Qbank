@@ -1,17 +1,20 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getDepartments, getPapers } from '../../utils/storage';
+import LoadingSpinner from '../../components/LoadingSpinner';
 import './Departments.css';
 
 export default function Departments() {
     const [departments, setDepartments] = useState([]);
     const [papers, setPapers] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function loadData() {
             setDepartments(await getDepartments());
             setPapers(await getPapers());
+            setLoading(false);
         }
         loadData();
     }, []);
@@ -41,7 +44,9 @@ export default function Departments() {
                     </div>
                 </div>
 
-                {filteredDepartments.length === 0 ? (
+                {loading ? (
+                    <LoadingSpinner message="Loading departments..." />
+                ) : filteredDepartments.length === 0 ? (
                     <div className="empty-state">
                         <div className="empty-state-icon">🏛</div>
                         <h3>No departments found</h3>
