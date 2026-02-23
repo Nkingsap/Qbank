@@ -112,9 +112,25 @@
 }
 
 .filter-chip.active {
-    background: var(--color-white);
-    color: var(--color-black);
-    border-color: var(--color-white);
+    background: #0f172a;
+    color: #ffffff;
+    border-color: #0f172a;
+}
+
+/* Light theme overrides */
+[data-theme="light"] .view-toggle {
+    background: #e2e8f0;
+}
+
+[data-theme="light"] .view-toggle .btn-icon.active {
+    background: #ffffff;
+    color: #0f172a;
+}
+
+[data-theme="light"] .filter-chip.active {
+    background: #0f172a;
+    color: #ffffff;
+    border-color: #0f172a;
 }
 
 /* ===== Content ===== */

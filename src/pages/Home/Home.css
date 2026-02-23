@@ -434,6 +434,25 @@
     background: var(--color-gray-200);
 }
 
+/* ===== Light Theme Overrides ===== */
+[data-theme="light"] .section-tag {
+    background: #e2e8f0;
+    color: #475569;
+}
+
+[data-theme="light"] .step-number {
+    color: #cbd5e1;
+}
+
+[data-theme="light"] .cta-card .btn-primary {
+    background: #ffffff;
+    color: #0f172a;
+}
+
+[data-theme="light"] .cta-card .btn-primary:hover {
+    background: #e2e8f0;
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 1024px) {
     .exam-types-grid {

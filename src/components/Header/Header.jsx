@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
 
 export default function Header() {
     const { user, isLoggedIn, isSuperAdmin, isDeptAdmin, logout } = useAuth();
+    const { theme, toggleTheme } = useTheme();
     const location = useLocation();
     const navigate = useNavigate();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -51,6 +53,14 @@ export default function Header() {
                 </nav>
 
                 <div className="header-actions">
+                    <button
+                        className="theme-toggle"
+                        onClick={toggleTheme}
+                        aria-label="Toggle theme"
+                        title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                    >
+                        {theme === 'dark' ? '☀️' : '🌙'}
+                    </button>
                     {isLoggedIn && (
                         <div className="user-menu">
                             <div className="user-avatar" id="user-avatar">

@@ -97,6 +97,85 @@
   --max-content-width: 1200px;
 }
 
+/* ===== Light Theme Overrides ===== */
+[data-theme="light"] {
+  /* Surfaces */
+  --surface-primary: #ffffff;
+  --surface-secondary: #f8fafc;
+  --surface-elevated: #f1f5f9;
+  --surface-overlay: rgba(0, 0, 0, 0.4);
+
+  /* Borders */
+  --border-color: #e2e8f0;
+  --border-color-strong: #cbd5e1;
+
+  /* Text */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  --text-inverse: #f8fafc;
+
+  /* Accent */
+  --color-accent: #0f172a;
+  --color-accent-hover: #1e293b;
+
+  /* Shadows — slightly stronger for visibility on white */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+/* Light theme component-level overrides */
+[data-theme="light"] .skeleton {
+  background: linear-gradient(90deg,
+      #e2e8f0 25%,
+      #f1f5f9 50%,
+      #e2e8f0 75%);
+  background-size: 200% 100%;
+}
+
+[data-theme="light"] .table tr:hover td {
+  background: #f1f5f9;
+}
+
+[data-theme="light"] .toast {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+[data-theme="light"] .upload-zone:hover,
+[data-theme="light"] .upload-zone.drag-over {
+  background: #e2e8f0;
+}
+
+[data-theme="light"] .btn-primary {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+[data-theme="light"] .btn-primary:hover {
+  background: #1e293b;
+}
+
+[data-theme="light"] .badge-dark {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+[data-theme="light"] .badge-light {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
 /* Mobile Scale Overrides */
 @media (max-width: 768px) {
   :root {
