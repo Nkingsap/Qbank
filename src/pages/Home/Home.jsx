@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import { getDepartments, getPapers, SEMESTERS, EXAM_TYPES, incrementPaperViews, incrementPaperDownloads } from '../../utils/storage';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import './Home.css';
 
 export default function Home() {
+    const { isLoggedIn, user } = useAuth();
     const [departments, setDepartments] = useState([]);
     const [stats, setStats] = useState({ papers: 0, departments: 0, downloads: 0 });
     const [recentPapers, setRecentPapers] = useState([]);
@@ -295,14 +297,28 @@ export default function Home() {
             <section className="cta-section" id="cta-section">
                 <div className="container">
                     <div className="cta-card">
-                        <h2>Are you a Department Admin?</h2>
-                        <p>
-                            Login to upload and manage question papers for your department.
-                            Help juniors access the study materials they need.
-                        </p>
-                        <Link to="/login" className="btn btn-primary btn-lg">
-                            Admin Login →
-                        </Link>
+                        {isLoggedIn ? (
+                            <>
+                                <h2>Welcome back, {user?.name || 'Admin'}!</h2>
+                                <p>
+                                    Head to your dashboard to manage question papers, departments, and more.
+                                </p>
+                                <Link to="/dashboard" className="btn btn-primary btn-lg">
+                                    Go to Dashboard →
+                                </Link>
+                            </>
+                        ) : (
+                            <>
+                                <h2>Are you a Department Admin?</h2>
+                                <p>
+                                    Login to upload and manage question papers for your department.
+                                    Help juniors access the study materials they need.
+                                </p>
+                                <Link to="/login" className="btn btn-primary btn-lg">
+                                    Admin Login →
+                                </Link>
+                            </>
+                        )}
                     </div>
                 </div>
             </section>

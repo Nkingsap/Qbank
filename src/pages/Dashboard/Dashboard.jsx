@@ -16,6 +16,7 @@ import PaperManager from './PaperManager';
 import DepartmentManager from './DepartmentManager';
 import AdminManager from './AdminManager';
 import ActivityLogView from './ActivityLogView';
+import ProfileSettings from './ProfileSettings';
 import './Dashboard.css';
 
 export default function Dashboard() {
@@ -39,6 +40,7 @@ export default function Dashboard() {
             { id: 'admins', label: 'Admins', icon: '👤' },
         ] : []),
         { id: 'activity', label: 'Activity', icon: '📋' },
+        { id: 'profile', label: 'Profile', icon: '⚙️' },
     ];
 
     const [deptName, setDeptName] = useState(null);
@@ -86,6 +88,7 @@ export default function Dashboard() {
                     {activeTab === 'departments' && isSuperAdmin && <DepartmentManager />}
                     {activeTab === 'admins' && isSuperAdmin && <AdminManager />}
                     {activeTab === 'activity' && <ActivityLogView />}
+                    {activeTab === 'profile' && <ProfileSettings />}
                 </div>
             </div>
         </div>
