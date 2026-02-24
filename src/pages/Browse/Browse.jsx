@@ -66,17 +66,18 @@ export default function Browse() {
         const newFilters = { ...filters, [key]: value };
         setFilters(newFilters);
 
-        // Update URL params
+        // Update URL params — use replace so filters don't pollute browser history
+        // (mobile back button goes back to previous page, not undoes each filter)
         const params = new URLSearchParams();
         Object.entries(newFilters).forEach(([k, v]) => {
             if (v) params.set(k === 'departmentId' ? 'department' : k, v);
         });
-        setSearchParams(params);
+        setSearchParams(params, { replace: true });
     };
 
     const clearFilters = () => {
         setFilters({ departmentId: '', semester: '', examType: '', year: '', search: '' });
-        setSearchParams({});
+        setSearchParams({}, { replace: true });
     };
 
 
