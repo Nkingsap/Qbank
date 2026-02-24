@@ -103,18 +103,17 @@
     align-items: center;
     justify-content: center;
     border-radius: var(--radius-md);
-    background: transparent;
-    border: 1px solid var(--border-color);
+    background: none;
+    border: none;
+    color: var(--text-secondary);
     cursor: pointer;
-    font-size: 16px;
     transition: all var(--transition-fast);
     flex-shrink: 0;
 }
 
 .theme-toggle:hover {
-    background: var(--surface-elevated);
-    border-color: var(--border-color-strong);
-    transform: scale(1.05);
+    color: var(--text-primary);
+    transform: scale(1.15);
 }
 
 .user-menu {
@@ -168,6 +167,14 @@
 [data-theme="light"] .header {
     background: rgba(255, 255, 255, 0.9);
     border-bottom-color: #e2e8f0;
+}
+
+[data-theme="light"] .theme-toggle {
+    color: #475569;
+}
+
+[data-theme="light"] .theme-toggle:hover {
+    color: #0f172a;
 }
 
 [data-theme="light"] .user-avatar {

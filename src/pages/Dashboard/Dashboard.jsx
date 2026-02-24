@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Icon from '../../components/Icon';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
@@ -33,14 +34,14 @@ export default function Dashboard() {
     if (!user) return null;
 
     const tabs = [
-        { id: 'overview', label: 'Overview', icon: '📊' },
-        { id: 'papers', label: 'Papers', icon: '📄' },
+        { id: 'overview', label: 'Overview', icon: <Icon name="bar-chart" size={16} /> },
+        { id: 'papers', label: 'Papers', icon: <Icon name="file-text" size={16} /> },
         ...(isSuperAdmin ? [
-            { id: 'departments', label: 'Departments', icon: '🏛' },
-            { id: 'admins', label: 'Admins', icon: '👤' },
+            { id: 'departments', label: 'Departments', icon: <Icon name="building" size={16} /> },
+            { id: 'admins', label: 'Admins', icon: <Icon name="user" size={16} /> },
         ] : []),
-        { id: 'activity', label: 'Activity', icon: '📋' },
-        { id: 'profile', label: 'Profile', icon: '⚙️' },
+        { id: 'activity', label: 'Activity', icon: <Icon name="clipboard" size={16} /> },
+        { id: 'profile', label: 'Profile', icon: <Icon name="settings" size={16} /> },
     ];
 
     const [deptName, setDeptName] = useState(null);

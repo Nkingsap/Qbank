@@ -11,6 +11,7 @@ import {
     logActivity,
 } from '../../utils/storage';
 import LoadingButton from '../../components/LoadingButton';
+import Icon from '../../components/Icon';
 
 export default function DepartmentManager() {
     const { user } = useAuth();
@@ -182,7 +183,7 @@ export default function DepartmentManager() {
             {departments.length === 0 ? (
                 <div className="card">
                     <div className="empty-state">
-                        <div className="empty-state-icon">🏛</div>
+                        <div className="empty-state-icon"><Icon name="building" size={40} /></div>
                         <h3>No departments yet</h3>
                         <p>Create your first department to get started.</p>
                     </div>

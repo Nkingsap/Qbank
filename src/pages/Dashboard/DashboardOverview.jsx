@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { getStats, getDepartments, getPapersByFilters } from '../../utils/storage';
 import PaperCard from '../../components/PaperCard';
+import Icon from '../../components/Icon';
 
 export default function DashboardOverview() {
     const { user, isSuperAdmin, isDeptAdmin } = useAuth();
@@ -34,16 +35,16 @@ export default function DashboardOverview() {
 
     const displayStats = isSuperAdmin
         ? [
-            { label: 'Total Papers', value: stats.totalPapers, icon: '📄' },
-            { label: 'Departments', value: stats.totalDepartments, icon: '🏛' },
-            { label: 'Dept Admins', value: stats.totalAdmins, icon: '👤' },
-            { label: 'Total Downloads', value: stats.totalDownloads, icon: '↓' },
+            { label: 'Total Papers', value: stats.totalPapers, icon: <Icon name="file-text" size={22} /> },
+            { label: 'Departments', value: stats.totalDepartments, icon: <Icon name="building" size={22} /> },
+            { label: 'Dept Admins', value: stats.totalAdmins, icon: <Icon name="user" size={22} /> },
+            { label: 'Total Downloads', value: stats.totalDownloads, icon: <Icon name="download" size={22} /> },
         ]
         : [
-            { label: 'Your Papers', value: deptPapers.length, icon: '📄' },
-            { label: 'Total Views', value: deptPapers.reduce((s, p) => s + (p.views || 0), 0), icon: '👁' },
-            { label: 'Downloads', value: deptPapers.reduce((s, p) => s + (p.downloads || 0), 0), icon: '↓' },
-            { label: 'Semesters', value: 8, icon: '📚' },
+            { label: 'Your Papers', value: deptPapers.length, icon: <Icon name="file-text" size={22} /> },
+            { label: 'Total Views', value: deptPapers.reduce((s, p) => s + (p.views || 0), 0), icon: <Icon name="eye" size={22} /> },
+            { label: 'Downloads', value: deptPapers.reduce((s, p) => s + (p.downloads || 0), 0), icon: <Icon name="download" size={22} /> },
+            { label: 'Semesters', value: 8, icon: <Icon name="book-open" size={22} /> },
         ];
 
     return (
@@ -127,7 +128,7 @@ export default function DashboardOverview() {
                 {stats.recentUploads.length === 0 ? (
                     <div className="card">
                         <div className="empty-state">
-                            <div className="empty-state-icon">📭</div>
+                            <div className="empty-state-icon"><Icon name="mail-open" size={40} /></div>
                             <h3>No uploads yet</h3>
                             <p>Papers you upload will appear here.</p>
                         </div>

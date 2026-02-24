@@ -1,4 +1,5 @@
 import React from 'react';
+import Icon from './Icon';
 import './PaperCard.css';
 
 export default function PaperCard({ paper, department, onView, onDownload, isDownloading, onDelete, isDeleting }) {
@@ -33,7 +34,7 @@ export default function PaperCard({ paper, department, onView, onDownload, isDow
 
             <div className="paper-card-footer">
                 <div className="paper-stats">
-                    <span title="Views">👁 {paper.views || 0}</span>
+                    <span title="Views"><Icon name="eye" size={14} /> {paper.views || 0}</span>
                     <span title="Downloads">↓ {paper.downloads || 0}</span>
                 </div>
                 <div className="paper-actions">

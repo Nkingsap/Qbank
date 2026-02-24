@@ -11,6 +11,7 @@ import {
     logActivity,
 } from '../../utils/storage';
 import LoadingButton from '../../components/LoadingButton';
+import Icon from '../../components/Icon';
 
 export default function AdminManager() {
     const { user } = useAuth();
@@ -220,7 +221,7 @@ export default function AdminManager() {
                                     onClick={() => setShowPassword(!showPassword)}
                                     tabIndex={-1}
                                 >
-                                    {showPassword ? '🙈' : '👁'}
+                                    {showPassword ? <Icon name="eye-off" size={18} /> : <Icon name="eye" size={18} />}
                                 </button>
                             </div>
                         </div>
@@ -257,7 +258,7 @@ export default function AdminManager() {
             {admins.length === 0 ? (
                 <div className="card">
                     <div className="empty-state">
-                        <div className="empty-state-icon">👤</div>
+                        <div className="empty-state-icon"><Icon name="user" size={40} /></div>
                         <h3>No department admins yet</h3>
                         <p>Create admins so they can upload papers for their departments.</p>
                     </div>

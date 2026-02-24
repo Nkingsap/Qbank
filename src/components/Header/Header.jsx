@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Icon from '../Icon';
 import './Header.css';
 
 export default function Header() {
@@ -59,7 +60,7 @@ export default function Header() {
                         aria-label="Toggle theme"
                         title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
                     >
-                        {theme === 'dark' ? '☀️' : '🌙'}
+                        {theme === 'dark' ? <Icon name="sun" size={18} /> : <Icon name="moon" size={18} />}
                     </button>
                     {isLoggedIn && (
                         <div className="user-menu">

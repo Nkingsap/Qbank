@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
 import { updateUser, updateCurrentUserSession, getDepartmentById } from '../../utils/storage';
+import Icon from '../../components/Icon';
 
 export default function ProfileSettings() {
     const { user, isSuperAdmin, isDeptAdmin, setUser } = useAuth();
@@ -100,7 +101,7 @@ export default function ProfileSettings() {
                     <div className="profile-header-info">
                         <h2>{user?.name}</h2>
                         <span className="profile-role-badge">
-                            {isSuperAdmin ? '🛡️ Super Admin' : '🏛️ Department Admin'}
+                            {isSuperAdmin ? <><Icon name="shield" size={14} /> Super Admin</> : <><Icon name="building" size={14} /> Department Admin</>}
                         </span>
                     </div>
                     {!isEditing && (
@@ -108,7 +109,7 @@ export default function ProfileSettings() {
                             className="btn btn-secondary btn-sm profile-edit-btn"
                             onClick={() => setIsEditing(true)}
                         >
-                            ✏️ Edit Profile
+                            <Icon name="edit" size={14} /> Edit Profile
                         </button>
                     )}
                 </div>
@@ -195,7 +196,7 @@ export default function ProfileSettings() {
                             className="btn btn-secondary btn-sm"
                             onClick={() => setShowPasswordForm(true)}
                         >
-                            🔒 Change Password
+                            <Icon name="lock" size={14} /> Change Password
                         </button>
                     )}
                 </div>

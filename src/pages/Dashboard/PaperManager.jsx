@@ -15,6 +15,7 @@ import {
 } from '../../utils/storage';
 import LoadingButton from '../../components/LoadingButton';
 import PaperCard from '../../components/PaperCard';
+import Icon from '../../components/Icon';
 
 export default function PaperManager() {
     const { user, isSuperAdmin, isDeptAdmin } = useAuth();
@@ -379,7 +380,7 @@ export default function PaperManager() {
                 {/* Filters Bar */}
                 <div className="manager-filters paper-manager-filters">
                     <div className="search-wrapper" style={{ flex: 1, maxWidth: '300px' }}>
-                        <span className="search-icon">🔍</span>
+                        <span className="search-icon"><Icon name="search" size={16} /></span>
                         <input
                             type="text"
                             className="search-input"
@@ -439,7 +440,7 @@ export default function PaperManager() {
             {papers.length === 0 ? (
                 <div className="card">
                     <div className="empty-state">
-                        <div className="empty-state-icon">📄</div>
+                        <div className="empty-state-icon"><Icon name="file-text" size={40} /></div>
                         <h3>No papers found</h3>
                         <p>Upload your first question paper to get started.</p>
                         {!showUploadForm && (

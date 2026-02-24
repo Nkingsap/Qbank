@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
+import Icon from '../../components/Icon';
 import './Login.css';
 
 export default function Login() {
@@ -74,7 +75,7 @@ export default function Login() {
                                 onClick={() => setShowPassword(!showPassword)}
                                 tabIndex={-1}
                             >
-                                {showPassword ? '🙈' : '👁'}
+                                {showPassword ? <Icon name="eye-off" size={18} /> : <Icon name="eye" size={18} />}
                             </button>
                         </div>
                     </div>

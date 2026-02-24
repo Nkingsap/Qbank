@@ -11,6 +11,7 @@ import {
 } from '../../utils/storage';
 import PaperCard from '../../components/PaperCard';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import Icon from '../../components/Icon';
 import './Browse.css';
 
 export default function Browse() {
@@ -161,7 +162,7 @@ export default function Browse() {
                             <div className="filter-group">
                                 <label className="filter-label">Search</label>
                                 <div className="search-wrapper">
-                                    <span className="search-icon">🔍</span>
+                                    <span className="search-icon"><Icon name="search" size={16} /></span>
                                     <input
                                         type="text"
                                         className="search-input"
@@ -261,7 +262,7 @@ export default function Browse() {
                             <LoadingSpinner message="Loading papers..." />
                         ) : papers.length === 0 ? (
                             <div className="empty-state">
-                                <div className="empty-state-icon">📚</div>
+                                <div className="empty-state-icon"><Icon name="book-open" size={40} /></div>
                                 <h3>No papers found</h3>
                                 <p>
                                     {activeFiltersCount > 0

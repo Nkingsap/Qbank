@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { getActivityLog } from '../../utils/storage';
+import Icon from '../../components/Icon';
 
 export default function ActivityLogView() {
     const { user, isDeptAdmin } = useAuth();
@@ -17,21 +18,16 @@ export default function ActivityLogView() {
     }, [limit, isDeptAdmin, user]);
 
     const formatTime = (isoString) => {
+        if (!isoString) return 'Unknown';
         const date = new Date(isoString);
-        const now = new Date();
-        const diff = now - date;
-
-        if (diff < 60000) return 'Just now';
-        if (diff < 3600000) return `${Math.floor(diff / 60000)} min ago`;
-        if (diff < 86400000) return `${Math.floor(diff / 3600000)} hours ago`;
-        if (diff < 604800000) return `${Math.floor(diff / 86400000)} days ago`;
-
-        return date.toLocaleDateString('en-US', {
+        if (isNaN(date.getTime())) return 'Unknown';
+        return date.toLocaleString('en-IN', {
+            day: '2-digit',
             month: 'short',
-            day: 'numeric',
             year: 'numeric',
             hour: '2-digit',
             minute: '2-digit',
+            hour12: true,
         });
     };
 
@@ -61,7 +57,7 @@ export default function ActivityLogView() {
             {logs.length === 0 ? (
                 <div className="card">
                     <div className="empty-state">
-                        <div className="empty-state-icon">📋</div>
+                        <div className="empty-state-icon"><Icon name="clipboard" size={40} /></div>
                         <h3>No activity yet</h3>
                         <p>Actions like uploads, logins, and changes will appear here.</p>
                     </div>
@@ -79,7 +75,7 @@ export default function ActivityLogView() {
                                         </span>
                                         {log.message}
                                     </div>
-                                    <div className="activity-time">{formatTime(log.timestamp)}</div>
+                                    <div className="activity-time">{formatTime(log.createdAt)}</div>
                                 </div>
                             </div>
                         ))}
