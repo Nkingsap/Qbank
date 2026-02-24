@@ -103,18 +103,14 @@
     background: transparent;
     color: var(--text-secondary);
     cursor: pointer;
-    transition: all var(--transition-fast);
-}
-
-.filter-chip:hover {
-    border-color: var(--color-gray-400);
-    color: var(--text-primary);
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
 .filter-chip.active {
-    background: #0f172a;
-    color: #ffffff;
-    border-color: #0f172a;
+    background: var(--text-primary);
+    color: var(--surface-primary);
+    border-color: var(--text-primary);
+    font-weight: 600;
 }
 
 /* Light theme overrides */
