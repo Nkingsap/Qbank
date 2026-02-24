@@ -6,7 +6,7 @@ import Icon from '../../components/Icon';
 
 export default function ProfileSettings() {
     const { user, isSuperAdmin, isDeptAdmin, setUser } = useAuth();
-    const { showToast } = useToast();
+    const { addToast: showToast } = useToast();
 
     // Profile editing
     const [isEditing, setIsEditing] = useState(false);
@@ -19,6 +19,9 @@ export default function ProfileSettings() {
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [changingPassword, setChangingPassword] = useState(false);
+    const [showNewPassword, setShowNewPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [passwordSuccessInfo, setPasswordSuccessInfo] = useState(null);
 
     // Department name
     const [deptName, setDeptName] = useState(null);
@@ -76,6 +79,7 @@ export default function ProfileSettings() {
         try {
             const result = await updateUser(user.id, { password: newPassword });
             if (result.success) {
+                setPasswordSuccessInfo(newPassword);
                 setNewPassword('');
                 setConfirmPassword('');
                 setShowPasswordForm(false);
@@ -201,27 +205,66 @@ export default function ProfileSettings() {
                     )}
                 </div>
 
+                {passwordSuccessInfo && (
+                    <div className="password-success-banner">
+                        <div className="password-success-banner-content">
+                            <Icon name="check" size={16} />
+                            <div>
+                                <strong>Password changed successfully!</strong>
+                                <p>Your new password is: <span className="password-reveal">{passwordSuccessInfo}</span></p>
+                            </div>
+                        </div>
+                        <button
+                            className="password-success-dismiss"
+                            onClick={() => setPasswordSuccessInfo(null)}
+                            title="Dismiss"
+                        >
+                            <Icon name="x" size={14} />
+                        </button>
+                    </div>
+                )}
+
                 {showPasswordForm && (
                     <div className="profile-password-form">
                         <div className="form-group">
                             <label className="form-label">New Password</label>
-                            <input
-                                type="password"
-                                className="form-input"
-                                value={newPassword}
-                                onChange={(e) => setNewPassword(e.target.value)}
-                                placeholder="Enter new password (min. 6 characters)"
-                            />
+                            <div className="password-input-wrapper">
+                                <input
+                                    type={showNewPassword ? 'text' : 'password'}
+                                    className="form-input"
+                                    value={newPassword}
+                                    onChange={(e) => setNewPassword(e.target.value)}
+                                    placeholder="Enter new password (min. 6 characters)"
+                                />
+                                <button
+                                    type="button"
+                                    className="password-toggle-btn"
+                                    onClick={() => setShowNewPassword(v => !v)}
+                                    tabIndex={-1}
+                                >
+                                    <Icon name={showNewPassword ? 'eye-off' : 'eye'} size={16} />
+                                </button>
+                            </div>
                         </div>
                         <div className="form-group">
                             <label className="form-label">Confirm New Password</label>
-                            <input
-                                type="password"
-                                className="form-input"
-                                value={confirmPassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                                placeholder="Confirm new password"
-                            />
+                            <div className="password-input-wrapper">
+                                <input
+                                    type={showConfirmPassword ? 'text' : 'password'}
+                                    className="form-input"
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    placeholder="Confirm new password"
+                                />
+                                <button
+                                    type="button"
+                                    className="password-toggle-btn"
+                                    onClick={() => setShowConfirmPassword(v => !v)}
+                                    tabIndex={-1}
+                                >
+                                    <Icon name={showConfirmPassword ? 'eye-off' : 'eye'} size={16} />
+                                </button>
+                            </div>
                         </div>
                         <div className="profile-edit-actions">
                             <button
@@ -230,6 +273,8 @@ export default function ProfileSettings() {
                                     setShowPasswordForm(false);
                                     setNewPassword('');
                                     setConfirmPassword('');
+                                    setShowNewPassword(false);
+                                    setShowConfirmPassword(false);
                                 }}
                                 disabled={changingPassword}
                             >
