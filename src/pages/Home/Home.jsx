@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { getDepartments, getPapers, SEMESTERS, EXAM_TYPES, incrementPaperViews, incrementPaperDownloads } from '../../utils/storage';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import Icon from '../../components/Icon';
 import './Home.css';
 
 export default function Home() {
@@ -213,7 +214,7 @@ export default function Home() {
                                     id={`exam-type-${type.replace(/\s+/g, '-').toLowerCase()}`}
                                 >
                                     <div className="exam-type-icon">
-                                        {type.includes('Weekly') ? '📝' : type.includes('CIA') ? '📋' : '📄'}
+                                        {type.includes('Weekly') ? <Icon name="pen-line" size={22} /> : type.includes('CIA') ? <Icon name="clipboard" size={22} /> : <Icon name="file-text" size={22} />}
                                     </div>
                                     <h3>{type}</h3>
                                     <p>{count} {count === 1 ? 'paper' : 'papers'} available</p>
