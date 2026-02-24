@@ -14,10 +14,7 @@ export default function Footer() {
     );
 
     // Instagram DM deep link (mobile-friendly)
-    const instagramMessage = encodeURIComponent(
-        "Hi! I saw your Question Bank project and wanted to know more."
-    );
-    const instagramLink = `https://www.instagram.com/direct/new/?text=${instagramMessage}`;
+    const instagramLink = "https://www.instagram.com/nkingsap/";
 
     return (
         <footer className="footer">
