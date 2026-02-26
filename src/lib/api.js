@@ -30,7 +30,9 @@ function getAuthToken() {
     const session = localStorage.getItem('qbank_session');
     if (session) {
         try {
-            return JSON.parse(session).access_token;
+            const parsed = JSON.parse(session);
+            // normalizeKeys converts access_token → accessToken before storage
+            return parsed.accessToken || parsed.access_token || null;
         } catch {
             return null;
         }
