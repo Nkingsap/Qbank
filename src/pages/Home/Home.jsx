@@ -17,8 +17,7 @@ export default function Home() {
 
     useEffect(() => {
         async function loadData() {
-            const depts = await getDepartments();
-            const papers = await getPapers();
+            const [depts, papers] = await Promise.all([getDepartments(), getPapers()]);
             setDepartments(depts);
             setRecentPapers(papers.sort((a, b) => new Date(b.uploadedAt || b.createdAt) - new Date(a.uploadedAt || a.createdAt)));
             setStats({
